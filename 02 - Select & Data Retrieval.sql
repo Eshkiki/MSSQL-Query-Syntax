@@ -83,3 +83,4 @@ Select top 1 code_st + 1 from TStudent order by Code_st desc;
 
 Select top 1 code_st + 1 from TStudent 
 where code_st + 1 not in (select Code_st from TStudent);
+
