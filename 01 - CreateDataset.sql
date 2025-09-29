@@ -6,6 +6,7 @@ CREATE TABLE dbo.TStudent
     LName        NVARCHAR(50)   NULL,
     BDate        SMALLINT       NULL,    
     Education    NVARCHAR(50)   NULL,
+    Gender       SMALLINT       NULL,   
     D_Reg        VARCHAR(10)    NULL,    
     CityCode     VARCHAR(10)    NULL,
     Telephone    VARCHAR(20)    NULL,
@@ -51,6 +52,22 @@ CREATE TABLE dbo.TCourse_Applicant
 );
 GO
 
+-- Insert teachers
+CREATE TABLE dbo.TTeacher
+(
+    Code_Teacher   INT IDENTITY(1,1) PRIMARY KEY,  -- auto-increment starting at 1
+    FName          NVARCHAR(50)   NOT NULL,
+    LName          NVARCHAR(50)   NOT NULL,
+    HireDate       DATE           NULL,
+    Subject        NVARCHAR(100)  NULL,
+    Email          NVARCHAR(100)  NULL,
+    Phone          VARCHAR(20)    NULL,
+    Address        NVARCHAR(200)  NULL
+);
+CREATE INDEX IX_TTeacher_Subject ON dbo.TTeacher(Subject);
+
+
+
 
 -- Helpful indexes 
 CREATE INDEX IX_TStudent_DReg          ON dbo.TStudent(D_Reg);
@@ -65,12 +82,12 @@ GO
 -- Students
 INSERT INTO dbo.TStudent (Code_St, FName, LName, BDate, Education, D_Reg, CityCode, Telephone, Address)
 VALUES
- (1, N'James',   N'Smith',     1998, N'Bachelor',   '2015/09/01', '020', '07111111111', N'London, Baker Street'),
- (2, N'Emily',   N'Johnson',   2000, N'Master',     '2017/03/15', '011', '07222222222', N'Bristol, Clifton'),
- (3, N'Daniel',  N'Brown',     1997, N'Diploma',    '2016/11/20', '012', '07333333333', N'Manchester, Oxford Road'),
- (4, N'Sophie',  N'Wilson',    2002, N'Bachelor',   '2019/10/10', '013', '07444444444', N'Cardiff, Queen Street'),
- (5, N'Oliver',  N'Taylor',    1995, N'PhD',        '2014/05/22', '014', '07555555555', N'Cambridge, King’s Parade'),
- (6, N'Grace',   N'Evans',     2010, N'HighSchool', '2024/01/12', '015', '07666666666', N'Edinburgh, Princes Street');
+ (1, N'James',   N'Smith',     1998, N'Bachelor',   '2015/09/01', '020', '07111111111', N'London, Baker Street', 1),
+ (2, N'Emily',   N'Johnson',   2000, N'Master',     '2017/03/15', '011', '07222222222', N'Bristol, Clifton', 0),
+ (3, N'Daniel',  N'Brown',     1997, N'Diploma',    '2016/11/20', '012', '07333333333', N'Manchester, Oxford Road', 2),
+ (4, N'Sophie',  N'Wilson',    2002, N'Bachelor',   '2019/10/10', '013', '07444444444', N'Cardiff, Queen Street', 2),
+ (5, N'Oliver',  N'Taylor',    1995, N'PhD',        '2014/05/22', '014', '07555555555', N'Cambridge, King’s Parade', 1),
+ (6, N'Grace',   N'Evans',     2010, N'HighSchool', '2024/01/12', '015', '07666666666', N'Edinburgh, Princes Street', 2);
 GO
 
 -- Courses
@@ -106,4 +123,14 @@ VALUES
  (104, N'Charlotte',N'Lewis',   '13960104', '2024-08-12', N'Rejected'),    -- new applicant
  (105, N'Matthew', N'Walker',   '13960101', '2024-08-15', N'Pending'),     -- new applicant
  (106, N'Sophie',  N'Wilson',   '13960102', '2024-08-18', N'Accepted');    -- same as student 4
+GO
+
+
+INSERT INTO dbo.TTeacher ( FName, LName, HireDate, [Subject], Email, Phone, Address)
+VALUES
+ (  N'William', N'Harris',  '2012-09-01', N'Database Systems',    'wharris@example.com',  '07711111111', N'London, King’s Cross'),
+ ( N'Elizabeth',N'Martin', '2015-01-15', N'SQL Programming',     'emartin@example.com',  '07722222222', N'Bristol, Park Street'),
+ ( N'Thomas',  N'Wright',  '2018-04-20', N'Algorithms',          'twright@example.com',  '07733333333', N'Manchester, Deansgate'),
+ ( N'Charlotte',N'Hall',   '2016-06-10', N'Web Development',     'chall@example.com',    '07744444444', N'Cardiff, City Road'),
+ ( N'Henry',   N'Green',   '2010-02-01', N'Computer Science',    'hgreen@example.com',   '07755555555', N'Cambridge, Trinity Street');
 GO
