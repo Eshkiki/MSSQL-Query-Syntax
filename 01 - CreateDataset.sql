@@ -10,7 +10,7 @@ CREATE TABLE dbo.TStudent
     CityCode     VARCHAR(10)    NULL,
     Telephone    VARCHAR(20)    NULL,
     Address      NVARCHAR(200)  NULL,
-   
+    CONSTRAINT CK_TStudent_BDate CHECK (BDate BETWEEN 1900 AND 2100)
 );
 GO
 
@@ -39,10 +39,24 @@ CREATE TABLE dbo.TCourse_Student
 );
 GO
 
+-- Applicant table (for prospective students who applied but may not be enrolled)
+CREATE TABLE dbo.TCourse_Applicant
+(
+    Applicant_Id   INT            NOT NULL PRIMARY KEY,      -- unique applicant id
+    FName          NVARCHAR(50)   NULL,
+    LName          NVARCHAR(50)   NULL,
+    Code_Standard  VARCHAR(20)    NOT NULL,                  -- links to course standard code
+    ApplyDate      DATE           NULL,
+    Status         NVARCHAR(20)   NULL                       
+);
+GO
+
+
 -- Helpful indexes 
-CREATE INDEX IX_TStudent_DReg         ON dbo.TStudent(D_Reg);
-CREATE INDEX IX_TCourses_CodeStandard ON dbo.TCourses(Code_Standard);
-CREATE INDEX IX_TCourse_Student_St    ON dbo.TCourse_Student(Code_St);
+CREATE INDEX IX_TStudent_DReg          ON dbo.TStudent(D_Reg);
+CREATE INDEX IX_TCourses_CodeStandard  ON dbo.TCourses(Code_Standard);
+CREATE INDEX IX_TCourse_Student_St     ON dbo.TCourse_Student(Code_St);
+CREATE INDEX IX_TCourse_Applicant_Code ON dbo.TCourse_Applicant(Code_Standard);
 GO
 
  
@@ -81,4 +95,15 @@ VALUES
  ('C104', 2,  14.50, 100.00),
  ('C104', 3,  NULL,  0.00),
  ('C104', 4,  17.75, 0.00);
+GO
+
+
+INSERT INTO dbo.TCourse_Applicant (Applicant_Id, FName, LName, Code_Standard, ApplyDate, Status)
+VALUES
+ (101, N'James',   N'Smith',    '13960101', '2024-08-01', N'Pending'),     -- same as student 1
+ (102, N'Emily',   N'Johnson',  '13960102', '2024-08-05', N'Accepted'),    -- same as student 2
+ (103, N'George',  N'Clark',    '13960103', '2024-08-10', N'Pending'),     -- new applicant
+ (104, N'Charlotte',N'Lewis',   '13960104', '2024-08-12', N'Rejected'),    -- new applicant
+ (105, N'Matthew', N'Walker',   '13960101', '2024-08-15', N'Pending'),     -- new applicant
+ (106, N'Sophie',  N'Wilson',   '13960102', '2024-08-18', N'Accepted');    -- same as student 4
 GO
