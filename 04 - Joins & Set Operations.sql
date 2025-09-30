@@ -3,7 +3,7 @@ select * from TStudent
 where Code_st in (select code_st from TCourse_Student where code_course = 'C101') 
 union  
 select * from TStudent  
-where Code_st in (select code_st from TCourse_Applicant where code_standard = '13960101');
+where Code_st in (select code_st from TCourse_Applicant where [status] = 'Accepted');
 
 
 
@@ -14,7 +14,7 @@ select * from TStudent
 where Code_st in (select code_st from TCourse_Student where code_course = 'C101') 
 intersect 
 select * from TStudent  
-where Code_st in (select code_st from TCourse_Applicant where code_standard = '13960101');
+where Code_st in (select code_st from TCourse_Applicant where [status] = 'Accepted');
 
 
 

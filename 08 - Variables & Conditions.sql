@@ -46,3 +46,4 @@ SELECT @@IDENTITY;
 
 Insert into dbo.TTeacher Select 'Ben', 'KullumnBerg', '2012-09-09', 'Python', 'B.Kull@example.com', '077111111111', 'London Kings way' 
 Select @@IDENTITY as [code_techer]
+ 
