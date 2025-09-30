@@ -2,13 +2,13 @@
 
 This repository contains a series of **SQL scripts** designed to teach database concepts step by step — from creating a dataset to working with advanced queries and functions.
 
-
+![Database Schema](https://github.com/Eshkiki/MSSQL-Query-Syntax/blob/69535c58d8da7cdea5eac4139ad5faed7556f73e/Diagram.png)
 
 ##  Repository Structure
 
 ### 1. **01 - CreateDataset.sql**
 - Creates the base schema:
-  - `TStudent`, `TCourses`, `TCourse_Student`, `TCourse_Applicant`, `TTeacher`
+  - `TStudent`, `TCourses`, `TCourse_Student`, `TCourse_Applicant`, `TTeacher`, `TCity`
 - Adds indexes for performance
 - Inserts sample data 
 
