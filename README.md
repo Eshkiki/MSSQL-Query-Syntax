@@ -2,7 +2,7 @@
 
 This repository contains a series of **SQL scripts** designed to teach database concepts step by step — from creating a dataset to working with advanced queries and functions.
 
-![Database Schema](https://github.com/Eshkiki/MSSQL-Query-Syntax/blob/69535c58d8da7cdea5eac4139ad5faed7556f73e/Diagram.png)
+![Database Schema](https://github.com/Eshkiki/MSSQL-Query-Syntax/blob/eb35ce873ea5357deed3cd5e0ddd0e5e1368e2c4/Diagram.png)
 
 ##  Repository Structure
 
